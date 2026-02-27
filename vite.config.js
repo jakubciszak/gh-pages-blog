@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: process.env.VITE_BASE_PATH || '/',
   build: {
     outDir: 'dist',
   },
