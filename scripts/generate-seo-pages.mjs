@@ -6,10 +6,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const POSTS_DATA_PATH = path.join(ROOT, 'src', 'generated', 'posts-data.js');
+const BLOG_CONFIG_PATH = path.join(ROOT, 'blog.config.js');
 
-/* ── Configure these values for your site ── */
-const SITE_URL = process.env.SITE_URL || 'https://yourusername.github.io/your-repo';
-const SITE_NAME = process.env.SITE_NAME || 'My Blog';
+/* ── Load config from blog.config.js ── */
+const { default: blogConfig } = await import(BLOG_CONFIG_PATH);
+
+const SITE_URL = blogConfig.siteUrl || 'https://yourusername.github.io/your-repo';
+const SITE_NAME = blogConfig.title || 'My Blog';
+const SITE_LANG = blogConfig.lang || 'en';
 
 /* ── Read posts data ── */
 async function loadPostsData() {
@@ -25,6 +29,9 @@ function generatePostPage(post, templateHtml) {
 
   /* Build the SEO-enriched HTML with proper meta tags */
   let html = templateHtml;
+
+  /* Set lang attribute */
+  html = html.replace(/<html([^>]*)lang="[^"]*"/, `<html$1lang="${SITE_LANG}"`);
 
   /* Replace title */
   html = html.replace(
@@ -113,6 +120,9 @@ function generateBlogListPage(posts, templateHtml) {
   const pageUrl = `${SITE_URL}/blog`;
 
   let html = templateHtml;
+
+  /* Set lang attribute */
+  html = html.replace(/<html([^>]*)lang="[^"]*"/, `<html$1lang="${SITE_LANG}"`);
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`);
   html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${escapeAttr(description)}">`);

@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import postsData from '../generated/posts-data.js';
+import config from '@config';
 import './Blog.css';
 
 export default function Blog() {
   const [activeTags, setActiveTags] = useState(new Set());
 
   useEffect(() => {
-    document.title = 'Blog — My Blog';
+    document.title = `Blog — ${config.title}`;
   }, []);
 
   const { posts, allTags } = postsData;

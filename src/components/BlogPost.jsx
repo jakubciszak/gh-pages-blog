@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import postsData from '../generated/posts-data.js';
+import config from '@config';
 import 'highlight.js/styles/github.css';
 import './BlogPost.css';
 
@@ -15,9 +16,9 @@ export default function BlogPost() {
 
   useEffect(() => {
     if (post) {
-      document.title = `${post.title} — Blog`;
+      document.title = `${post.title} — ${config.title}`;
     } else {
-      document.title = 'Not found — Blog';
+      document.title = `Not found — ${config.title}`;
     }
     window.scrollTo(0, 0);
   }, [post]);

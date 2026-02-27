@@ -8,6 +8,7 @@ A simple, generic blog framework built with React + Vite that you can clone and 
 - Tag-based filtering on the blog listing page
 - Automatic SEO-friendly static pages for every post
 - Automatic deployment via GitHub Actions
+- Three built-in colour themes: `light`, `dark`, `sepia`
 
 ## Getting started
 
@@ -19,17 +20,30 @@ cd my-blog
 npm install
 ```
 
-### 2. Customise the site
+### 2. Configure your blog
 
-Edit **`index.html`** to update the site title, description, and canonical URL.
+Open **`blog.config.js`** and edit the values:
 
-Edit **`src/components/Navigation.jsx`** to change the blog name shown in the nav bar.
+```js
+export default {
+  // Displayed in the nav bar, browser tab, and SEO meta tags
+  title: 'My Blog',
 
-Edit **`src/components/Home.jsx`** to change the home-page headline and description.
+  // Used in <meta name="description">
+  description: 'A simple blog powered by gh-pages-blog.',
 
-Edit **`src/components/Footer.jsx`** to add your own links.
+  // HTML lang attribute – e.g. 'en', 'pl', 'de', 'fr'
+  lang: 'en',
 
-For SEO meta tags on each post page, set the `SITE_URL` and `SITE_NAME` environment variables when running the build, or edit the defaults at the top of `scripts/generate-seo-pages.mjs`.
+  // Canonical URL of your site (no trailing slash)
+  siteUrl: 'https://yourusername.github.io/your-repo',
+
+  // Colour theme: 'light' | 'dark' | 'sepia'
+  theme: 'light',
+};
+```
+
+That's all you need to change for a basic setup. After editing the config, run `npm run build` locally or push to GitHub – the Actions workflow will rebuild and redeploy automatically.
 
 ### 3. Write your first post
 
@@ -63,10 +77,21 @@ npm run dev
 2. Go to **Settings → Pages** and set the source to **GitHub Actions**.
 3. The included workflow (`.github/workflows/deploy.yml`) will build and deploy the site automatically on every push to `main` or `master`.
 
+## Colour themes
+
+| Value | Description |
+|-------|-------------|
+| `light` | Clean white background with dark text (default) |
+| `dark`  | Dark background with light text |
+| `sepia` | Warm beige / parchment tones |
+
+Change the `theme` key in `blog.config.js` and redeploy to switch themes.
+
 ## Project structure
 
 ```
 .
+├── blog.config.js       # ← Edit this to configure your blog
 ├── posts/               # Your Markdown posts
 ├── public/              # Static assets served as-is
 ├── scripts/
@@ -76,7 +101,7 @@ npm run dev
 │   ├── components/      # React components
 │   ├── generated/       # Auto-generated (git-ignored)
 │   ├── App.jsx
-│   ├── index.css
+│   ├── index.css        # Global styles + theme definitions
 │   └── main.jsx
 ├── index.html
 ├── package.json

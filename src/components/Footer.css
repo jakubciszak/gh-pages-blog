@@ -2,18 +2,18 @@
 .blog-footer {
   margin-top: 4rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--border);
   text-align: center;
   font-size: 0.82rem;
-  color: #999;
+  color: var(--text-faint);
 }
 
 .blog-footer a {
-  color: #555;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
 .blog-footer a:hover {
-  color: #1a1a1a;
+  color: var(--text);
   text-decoration: underline;
 }

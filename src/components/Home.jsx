@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import postsData from '../generated/posts-data.js';
+import config from '@config';
 import './Home.css';
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'My Blog';
+    document.title = config.title;
   }, []);
 
   const recentPosts = postsData.posts.slice(0, 3);
@@ -17,8 +18,8 @@ export default function Home() {
       <Navigation />
       <main className="home-content">
         <section className="home-hero">
-          <h1>Welcome to My Blog</h1>
-          <p>A place to share thoughts, ideas, and articles. Clone this repository and make it yours.</p>
+          <h1>Welcome to {config.title}</h1>
+          <p>{config.description}</p>
           <Link to="/blog" className="home-cta">Read the blog &rarr;</Link>
         </section>
 
