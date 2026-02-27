@@ -34,6 +34,12 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          BLOG_TITLE: ${{ vars.BLOG_TITLE }}
+          BLOG_DESCRIPTION: ${{ vars.BLOG_DESCRIPTION }}
+          BLOG_LANG: ${{ vars.BLOG_LANG }}
+          BLOG_SITE_URL: ${{ vars.BLOG_SITE_URL }}
+          BLOG_THEME: ${{ vars.BLOG_THEME }}
         run: npm run build
 
       - name: Upload artifact

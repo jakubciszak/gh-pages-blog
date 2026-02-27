@@ -1,22 +1,30 @@
 /**
  * Blog configuration
  * ─────────────────────────────────────────────────────────────────────────
- * Edit these values to customise your blog.
- * After changing this file, run `npm run build` (or push to GitHub – the
- * Actions workflow will rebuild and redeploy automatically).
+ * Values are read from environment variables so they can be configured as
+ * repository variables in GitHub (Settings → Secrets and variables →
+ * Actions → Variables).  The defaults below are used when no environment
+ * variable is set.
+ *
+ * Variable names:
+ *   BLOG_TITLE        – site title
+ *   BLOG_DESCRIPTION  – short site description
+ *   BLOG_LANG         – HTML language code (e.g. 'en', 'pl')
+ *   BLOG_SITE_URL     – canonical URL, no trailing slash
+ *   BLOG_THEME        – colour theme: 'light' | 'dark' | 'sepia'
  */
 export default {
   /** Site title – shown in the nav bar, browser tab and SEO meta tags. */
-  title: 'My Blog',
+  title: process.env.BLOG_TITLE || 'My Blog',
 
   /** Short description used in the <meta name="description"> tag. */
-  description: 'A simple blog powered by gh-pages-blog.',
+  description: process.env.BLOG_DESCRIPTION || 'A simple blog powered by gh-pages-blog.',
 
   /**
    * HTML language code for the <html lang="..."> attribute.
    * Examples: 'en', 'pl', 'de', 'fr', 'es', 'ja'
    */
-  lang: 'en',
+  lang: process.env.BLOG_LANG || 'en',
 
   /**
    * Canonical site URL – used in SEO meta tags and the sitemap.
@@ -25,7 +33,7 @@ export default {
    *   'https://yourusername.github.io/your-repo'
    *   'https://myblog.com'
    */
-  siteUrl: 'https://yourusername.github.io/your-repo',
+  siteUrl: process.env.BLOG_SITE_URL || 'https://yourusername.github.io/your-repo',
 
   /**
    * Colour theme.
@@ -35,5 +43,5 @@ export default {
    *   dark  – dark background with light text
    *   sepia – warm beige/parchment tones
    */
-  theme: 'light',
+  theme: process.env.BLOG_THEME || 'light',
 };
