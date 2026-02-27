@@ -1,0 +1,19 @@
+/* ── Footer ──────────────────────────────────── */
+.blog-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+
+.blog-footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.blog-footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
