@@ -43,5 +43,5 @@ export default {
    *   dark  – dark background with light text
    *   sepia – warm beige/parchment tones
    */
-  theme: process.env.BLOG_THEME || 'sepia',
+  theme: process.env.BLOG_THEME || '',
 };
